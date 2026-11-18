@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ollama Chat</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Ollama Chat</h1>
+    <select id="model"></select>
+    <label id="thinkLabel" hidden><input type="checkbox" id="think" /> Reasoning</label>
+    <label><input type="checkbox" id="json" /> JSON (title + tags)</label>
+    <button id="newChat" type="button">New chat</button>
+  </header>
+
+  <!-- [A] paramètres -->
+  <details id="settings">
+    <summary>Paramètres</summary>
+    <textarea id="system" rows="2" placeholder="System prompt (optionnel)"></textarea>
+    <label>Température : <span id="tempVal">0.7</span>
+      <input id="temp" type="range" min="0" max="2" step="0.1" value="0.7" />
+    </label>
+    <label>Contexte (num_ctx) :
+      <select id="ctx">
+        <option>2048</option><option selected>4096</option><option>8192</option>
+      </select>
+    </label>
+  </details>
+
+  <main id="messages"></main>
+  <div id="stats"></div>
+
+  <form id="form">
+    <!-- [E] image -->
+    <label id="imgLabel" class="file" hidden>📎
+      <input type="file" id="img" accept="image/*" hidden />
+    </label>
+    <span id="imgName"></span>
+    <textarea id="input" rows="2" placeholder="Votre message… (Entrée pour envoyer)"></textarea>
+    <button id="send" type="submit">Send</button>
+    <button id="stop" type="button" hidden>Stop</button>
+  </form>
+
+  <!-- [B] Markdown + sanitisation -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
